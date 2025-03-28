@@ -95,12 +95,13 @@ Completed tasks appear in the "Completed Tasks" section at the bottom:
   /components
     TaskList.jsx            # Active task list
     CompletedTasks.jsx      # Completed tasks section
-    TaskFormModal.jsx       # Create/edit form page
+    TaskForm.jsx       # Create/edit form page
     TaskItem.jsx            # Single task component
   /models
     Task.jsx                # Task data model
   /services
-    StorageService.jsx      # localStorage handler
+    StorageService.jsx      # LocalStorage handler
+    TaskService.jsx         # Time zone handler
   /styles
     TaskManagement.css      # All styles
   App.jsx                   # Root component
