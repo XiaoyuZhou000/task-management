@@ -24,7 +24,7 @@ A React-based task management application with local storage persistence.
 ### Steps
 1. Clone the repository:
 ``` bash
-git clone https://github.com/your-username/task-manager.git
+git clone https://github.com/XiaoyuZhou000/task-management.git
 cd task-manager
 ```
 2. Install dependencies:
