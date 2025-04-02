@@ -13,6 +13,7 @@ const App = () => {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [showCreate, setshowCreate] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
+  const [sortBy, setSortBy] = useState('deadline'); 
 
   // Load tasks 
   useEffect(() => {
@@ -86,6 +87,20 @@ const App = () => {
     ));
   };
 
+  //sort by ddl or priority
+  const sortTasks = (tasks, criteria) => {
+    return [...tasks].sort((a, b) => {
+      if (criteria === 'deadline') {
+        return new Date(a.deadline) - new Date(b.deadline);
+      } else if (criteria === 'priority') {
+        return b.important - a.important; 
+      }
+      return 0;
+    });
+  };
+
+  const sortedTasks = sortTasks(tasks, sortBy);
+
   return (
     <div className="task-management">
       <header>
@@ -95,8 +110,15 @@ const App = () => {
         </button>
       </header>
 
+      <div style={{ marginTop: '10px',marginBottom:'10px' }}>
+            <label>Sort by: </label>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="deadline">Deadline</option>
+              <option value="priority">Priority</option>
+            </select>
+      </div>
       <TaskList
-        tasks={tasks}
+        tasks={sortedTasks}
         onToggleComplete={toggleComplete}
         onToggleImportant={toggleImportant}
         onTaskClick={(task) => setEditingTask(task)}
