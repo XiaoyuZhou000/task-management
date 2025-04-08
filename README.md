@@ -48,6 +48,14 @@ Create an production build:
 npm run build
 ```
 
+### Deployment
+
+Deploy the web app on Github Page
+``` bash
+npm run build
+npm run deploy
+```
+
 ## How to Use the Application
 
 ### Creating a Task
