@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .task-management {
     max-width: 800px;
     margin: 0 auto;
@@ -41,12 +50,21 @@
     color: #444;
   }
   
-  .task-list, .completed-list {
+  .task-list {
     list-style: none;
     padding: 0;
   }
   
-  .task-item, .completed-item {
+  .completed-list {
+    list-style: none;
+    padding: 0;
+    text-decoration: line-through;
+    text-decoration-thickness: 10%;
+  }
+
+
+
+  .task-item {
     display: flex;
     align-items: center;
     padding: 15px;
@@ -127,6 +145,8 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation-name: fadeIn;
+    animation-duration: 400ms;
   }
   
   .task-management {
@@ -136,6 +156,7 @@
     width: 100%;
     max-width: 500px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+
   }
   
   .task-management h2 {
@@ -149,7 +170,7 @@
   
   .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: bold;
   }
   
