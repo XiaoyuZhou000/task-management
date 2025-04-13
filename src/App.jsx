@@ -14,6 +14,7 @@ const App = () => {
   const [showCreate, setshowCreate] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [sortBy, setSortBy] = useState('deadline'); 
+  const [selectedTaskToDelete, setSelectedTaskToDelete] = useState(null);
 
   // Load tasks 
   useEffect(() => {
@@ -126,7 +127,7 @@ const App = () => {
 
       <CompletedTasks
         completedTasks={completedTasks}
-        onToggleComplete={toggleComplete}
+        onTaskClick={(task) => setSelectedTaskToDelete(task.id)}
       />
 
       <TaskForm
@@ -143,6 +144,21 @@ const App = () => {
         task={editingTask}
         isEditMode={true}
       />
+
+      {selectedTaskToDelete !== null && (
+        <div className="overlay">
+          <div className="delete-confirmation">
+            <p>Are you sure you want to delete this task?</p>
+            <div className="delete-actions">
+              <button className="delete-btn" onClick={() => {
+                handleDeleteTask(selectedTaskToDelete);
+                setSelectedTaskToDelete(null);
+              }}>Delete</button>
+              <button className="cancel-btn" onClick={() => setSelectedTaskToDelete(null)}>Keep</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

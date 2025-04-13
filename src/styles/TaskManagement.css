@@ -245,3 +245,24 @@
   .delete-btn:hover {
     background-color: #d32f2f;
   }
+
+  .delete-confirmation {
+    background-color: white;
+    padding: 25px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+  
+  .delete-confirmation p {
+    margin: 0 0 20px 0;
+    color: #333;
+    text-align: center;
+  }
+  
+  .delete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
