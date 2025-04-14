@@ -131,6 +131,7 @@ const App = () => {
 
       <CompletedTasks
         completedTasks={completedTasks}
+        onToggleComplete={toggleComplete}
         onTaskClick={(task) => setSelectedTaskToDelete(task.id)}
       />
 
