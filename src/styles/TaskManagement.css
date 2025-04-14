@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .task-management {
     max-width: 800px;
     margin: 0 auto;
@@ -41,12 +50,21 @@
     color: #444;
   }
   
-  .task-list, .completed-list {
+  .task-list {
     list-style: none;
     padding: 0;
   }
   
-  .task-item, .completed-item {
+  .completed-list {
+    list-style: none;
+    padding: 0;
+    text-decoration: line-through;
+    text-decoration-thickness: 10%;
+  }
+
+
+
+  .task-item {
     display: flex;
     align-items: center;
     padding: 15px;
@@ -106,16 +124,6 @@
     flex-shrink: 0;
   }
   
-  /* .completed-item {
-    opacity: 0.7;
-    background-color: #f9f9f9;
-  }
-  
-  .completed-item h3 {
-    text-decoration: line-through;
-    color: #999;
-  } */
-  
   .overlay {
     position: fixed;
     top: 0;
@@ -127,6 +135,8 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation-name: fadeIn;
+    animation-duration: 400ms;
   }
   
   .task-management {
@@ -149,7 +159,7 @@
   
   .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: bold;
   }
   
