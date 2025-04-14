@@ -255,3 +255,16 @@
     justify-content: center;
     gap: 10px;
   }
+
+  .reactive-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .reactive-btn:hover {
+    background-color: #0b7dda;
+  }
