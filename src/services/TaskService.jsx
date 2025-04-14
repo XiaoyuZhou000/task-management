@@ -13,6 +13,6 @@ export default class TaskService {
     }
   
     static validateTask(task) {
-      return task.title && task.deadline;
+      return task.title && task.deadline && !(task.recurringDaily && task.recurringWeekily);
     }
 }

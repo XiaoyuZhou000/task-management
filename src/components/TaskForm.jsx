@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from '../models/Task';
 import TaskService from '../services/TaskService';
 import '../styles/TaskManagement.css';
@@ -9,16 +9,16 @@ const TaskForm = ({
   onSubmit, 
   onDelete, 
   task = null,
-  isEditMode = false 
+  isEditMode = false
 }) => {
-  const [formData, setFormData] = React.useState(
+  const [formData, setFormData] = useState(
     task || {
       title: '',
       description: '',
       deadline: '',
       important: false,
-      recurringWeekly: false,
-      recurringDaily: false
+      recurringDaily: false,
+      recurringWeekily: false
     }
   );
 
@@ -31,11 +31,19 @@ const TaskForm = ({
   // Update the formData state for each field
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
+    console.log("form target name: " + e.target.name);
+    console.log("form target type: " + e.target.type);
+    console.log("form target checked: " + e.target.checked);
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value
     });
+    // console.log("form data " + formData.);
   };
+
+  useEffect(() => {
+    console.log('form data: ', formData);
+  }, [formData]);
 
   // Validate the task via TaskService.validateTask. If valid, it calls the onSubmit prop to pass the task data upward, then closes the form (onClose)
   const handleSubmit = (e) => {
@@ -95,11 +103,15 @@ const TaskForm = ({
               Daily
               <input
                 type="checkbox"
-                name="recurringWeekly"
-                checked={formData.recurringWeekly}
+                name="recurringWeekily"
+                checked={formData.recurringWeekily}
                 onChange={handleInputChange}
               />
               Weekily
+            </div>
+
+            <div className='warning'>
+              {(formData.recurringDaily && formData.recurringWeekily) && 'Only one recurring mode can be selected'}
             </div>
             
           </div>
