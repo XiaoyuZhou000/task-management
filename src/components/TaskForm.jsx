@@ -16,7 +16,9 @@ const TaskForm = ({
       title: '',
       description: '',
       deadline: '',
-      important: false
+      important: false,
+      recurringWeekly: false,
+      recurringDaily: false
     }
   );
 
@@ -73,7 +75,7 @@ const TaskForm = ({
             />
           </div>
           <div className="form-group">
-            <label>Deadline (Required)</label>
+            <label>Deadline (Required)
             <input
               type="datetime-local"
               name="deadline"
@@ -81,6 +83,25 @@ const TaskForm = ({
               onChange={handleInputChange}
               required
             />
+            </label>
+            
+            <div className='recurring'>
+            <input
+                type="checkbox"
+                name="recurringDaily"
+                checked={formData.recurringDaily}
+                onChange={handleInputChange}
+              />
+              Daily
+              <input
+                type="checkbox"
+                name="recurringWeekly"
+                checked={formData.recurringWeekly}
+                onChange={handleInputChange}
+              />
+              Weekily
+            </div>
+            
           </div>
           <div className="form-group checkbox">
             <label>

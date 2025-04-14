@@ -3,13 +3,42 @@ import TaskService from '../services/TaskService';
 import '../styles/TaskManagement.css';
 
 const TaskItem = ({ task, onToggleComplete, onToggleImportant, onClick }) => {
-  // calculate days left
+  // calculate days left normally
   const calculateDaysLeft = (deadline) => {
     const now = new Date();
     const dueDate = new Date(deadline);
-    const diffTime = dueDate - now;
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    const diffTime = Math.floor((dueDate - now) / (1000 * 60 * 60 * 24))
+    console.log(now)
+    console.log(dueDate)
+    console.log(diffTime)
+
+    if (((dueDate - now) / (1000 * 60 * 60 * 24)) > 0 && ((dueDate - now) / (1000 * 60 * 60 * 24)) < 1) {
+      return ", Due Today"
+    } else if (((dueDate - now) / (1000 * 60 * 60 * 24))  < 0) {
+      return ", Overdue";
+    } else {
+      return ' ,' + diffTime + ' day(s) left';
+    }
   };
+
+  const updateDeadline = () => {
+    if (task.recurringDaily === true && calculateDaysLeft(task.deadline) < 0) {
+      let deadlineDate = new Date(TaskService.formatDateTime(task.deadline));
+      task.deadline = deadlineDate.setDate(deadlineDate.getDate() + 1); 
+      task.completed = false;
+      return task.deadline;
+    } else if (task.recurringDaily === true && calculateDaysLeft(task.deadline) < 0) {
+      let deadlineDate = new Date(TaskService.formatDateTime(task.deadline));
+      task.deadline = deadlineDate.setDate(deadlineDate.getDate() + 7); 
+      task.completed = false;
+      return task.deadline;
+    } else {
+      return task.deadline;
+    }
+  }
+
+
+  const checkedDeadline = updateDeadline();
   const daysLeft = calculateDaysLeft(task.deadline);
   return (
     <li 
@@ -26,8 +55,8 @@ const TaskItem = ({ task, onToggleComplete, onToggleImportant, onClick }) => {
         <h3>{task.title}</h3>
         <p>{task.description}</p>
         <span className="deadline">
-          Due: {TaskService.formatDateTime(task.deadline)}
-          {daysLeft >= 0 ? ` (${daysLeft} days left)` : ' (Overdue)'}
+          Due: {TaskService.formatDateTime(checkedDeadline)}
+          {daysLeft}
         </span>
       </div>
       <div 
