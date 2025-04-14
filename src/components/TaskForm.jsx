@@ -18,7 +18,7 @@ const TaskForm = ({
       deadline: '',
       important: false,
       recurringDaily: false,
-      recurringWeekily: false
+      recurringWeekly: false
     }
   );
 
@@ -103,15 +103,15 @@ const TaskForm = ({
               Daily
               <input
                 type="checkbox"
-                name="recurringWeekily"
-                checked={formData.recurringWeekily}
+                name="recurringWeekly"
+                checked={formData.recurringWeekly}
                 onChange={handleInputChange}
               />
-              Weekily
+              Weekly
             </div>
 
             <div className='warning'>
-              {(formData.recurringDaily && formData.recurringWeekily) && 'Only one recurring mode can be selected'}
+              {(formData.recurringDaily && formData.recurringWeekly) && 'Only one recurring mode can be selected'}
             </div>
             
           </div>
