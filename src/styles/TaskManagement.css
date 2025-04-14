@@ -235,6 +235,10 @@
     background-color: #d32f2f;
   }
 
+  input[type="datetime-local"] {
+    margin-left: 20px;
+  }
+
   .delete-confirmation {
     background-color: white;
     padding: 25px;
@@ -256,6 +260,9 @@
     gap: 10px;
   }
 
+  .warning {
+    color: #d32f2f;
+    
   .reactive-btn {
     background-color: #2196F3;
     color: white;

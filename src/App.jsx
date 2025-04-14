@@ -51,7 +51,9 @@ const App = () => {
       taskData.title,
       taskData.description,
       taskData.deadline,
-      taskData.important
+      taskData.important,
+      taskData.recurringDaily,
+      taskData.recurringWeekily
     );
     setTasks([...tasks, newTask]);
   };
