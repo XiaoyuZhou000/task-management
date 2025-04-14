@@ -68,6 +68,10 @@ const App = () => {
     setCompletedTasks(completedTasks.filter(task => task.id !== taskId));
   };
 
+  const handleReactiveTask = (taskId) => {
+    toggleComplete(taskId);
+  };
+
   const toggleComplete = (taskId) => {
     const taskToComplete = tasks.find(task => task.id === taskId);
     if (taskToComplete) {
@@ -150,6 +154,10 @@ const App = () => {
           <div className="delete-confirmation">
             <p>Are you sure you want to delete this task?</p>
             <div className="delete-actions">
+              <button className='reactive-btn' onClick={() => {
+                handleReactiveTask(selectedTaskToDelete);
+                setSelectedTaskToDelete(null);
+              }}>Re-active</button>
               <button className="delete-btn" onClick={() => {
                 handleDeleteTask(selectedTaskToDelete);
                 setSelectedTaskToDelete(null);
