@@ -31,3 +31,6 @@
     cursor: pointer;
   }
   
+  .modal-close:hover {
+    background-color: #45a049;
+  }
