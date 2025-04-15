@@ -59,7 +59,7 @@
     list-style: none;
     padding: 0;
     text-decoration: line-through;
-    text-decoration-thickness: 10%;
+    text-decoration-thickness: 8%;
   }
 
 
@@ -83,18 +83,77 @@
     border-left: 4px solid #ff8000;
   }
   
+
   .task-checkbox {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    margin-right: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
+    margin-right: 15px;
   }
+  
+  .task-checkbox-input {
+    display: none;
+  }
+  
+  .check {
+    cursor: pointer;
+    position: relative;
+    margin: auto;
+    width: 18px;
+    height: 18px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .check:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(34, 50, 84, 0.03);
+    opacity: 0;
+  }
+  
+  .check svg {
+    position: relative;
+    z-index: 1;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #c8ccd4;
+  }
+  
+  .check svg path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 0;
+  }
+  
+  .check svg polyline {
+    stroke-dasharray: 22;
+    stroke-dashoffset: 66;
+  }
+  
+  .check:hover:before {
+    opacity: 1;
+  }
+  
+  .check:hover svg {
+    stroke: var(--accent-color, #77d648);
+  }
+  
+  .task-checkbox-input:checked + .check svg {
+    stroke: var(--accent-color, #77d648);
+  }
+  
+  .task-checkbox-input:checked + .check svg path {
+    stroke-dashoffset: 60;
+  }
+  
+  .task-checkbox-input:checked + .check svg polyline {
+    stroke-dashoffset: 42;
+  }
+  
   
   .task-content {
     flex-grow: 1;
@@ -115,15 +174,44 @@
     font-size: 12px;
     color: #888;
   }
-  
-  .star-icon {
-    font-size: 24px;
-    color: #ff8000;
+
+
+  .star-container {
+    display: block;
+    position: relative;
     cursor: pointer;
+    user-select: none;
     margin-left: 10px;
     flex-shrink: 0;
   }
   
+  .star-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .star-container svg {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    transition: all 0.3s;
+    fill: #666;
+  }
+  
+  .star-container svg:hover {
+    transform: scale(1.1);
+  }
+  
+  .star-container input:checked ~ svg {
+    fill: #ff8000;
+  }
+  
+
   .overlay {
     position: fixed;
     top: 0;
