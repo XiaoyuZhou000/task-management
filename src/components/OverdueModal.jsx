@@ -1,5 +1,5 @@
 import React from 'react';
-import './OverdueModal.css';
+import '../styles/OverdueModal.css';
 
 export default function OverdueModal({ isOpen, onClose, children }) {
   if (!isOpen) return null;

@@ -105,6 +105,7 @@ Completed tasks appear in the "Completed Tasks" section at the bottom:
     CompletedTasks.jsx      # Completed tasks section
     TaskForm.jsx       # Create/edit form page
     TaskItem.jsx            # Single task component
+    OverdueModal.jsx        # Overdue reminder module
   /models
     Task.jsx                # Task data model
   /services
@@ -112,6 +113,7 @@ Completed tasks appear in the "Completed Tasks" section at the bottom:
     TaskService.jsx         # Time zone handler
   /styles
     TaskManagement.css      # All styles
+    OverdueModal.css        # style configuration for overdue reminder model
   App.jsx                   # Root component
   main.jsx                  # React entry point
 ```
