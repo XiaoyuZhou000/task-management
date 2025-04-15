@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import Task from './models/Task';
 import TaskList from './components/TaskList';
 import CompletedTasks from './components/CompletedTasks';
 import TaskForm from './components/TaskForm';
 import StorageService from './services/StorageService';
 import './styles/TaskManagement.css';
+import OverdueModal from './components/OverdueModal';
+
 const STORAGE_KEY = 'task-manager-data';
 
 const App = () => {
@@ -15,6 +17,10 @@ const App = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [sortBy, setSortBy] = useState('deadline'); 
   const [selectedTaskToDelete, setSelectedTaskToDelete] = useState(null);
+  const hasShownAlert = useRef(false);
+  const [showModal, setShowModal] = useState(false);
+  const [overdueTitles, setOverdueTitles] = useState('');
+  const [overdueCount, setOverdueCount] = useState(0);
 
   // Load tasks 
   useEffect(() => {
@@ -24,6 +30,16 @@ const App = () => {
       setCompletedTasks(completedTasks);
       setInitialized(true);
       console.log('Initial load:', { activeTasks, completedTasks });
+
+      const now = new Date();
+      const overdueTasks = activeTasks.filter(task => new Date(task.deadline) < now);
+      if (overdueTasks.length > 0 && !hasShownAlert.current) {
+        hasShownAlert.current = true;
+        setOverdueCount(overdueTasks.length);
+        const titles = overdueTasks.map(task => `• ${task.title}`).join('\n');
+        setOverdueTitles(titles);
+        setShowModal(true);
+      }
     }
   }, [initialized]);
 
@@ -45,6 +61,19 @@ const App = () => {
   useEffect(() => {
     console.log('Completed tasks state changed:', completedTasks);
   }, [completedTasks]);
+
+// Show overdue task alert after initial load
+// useEffect(() => {
+//   if (initialized && tasks.length > 0) {
+//     const now = new Date();
+//     const overdueTasks = tasks.filter(task => new Date(task.deadline) < now && !task.completed);
+//     if (overdueTasks.length > 0) {
+//       const taskNames = overdueTasks.map(task => `- ${task.title}`).join('\n');
+//       alert(`You have ${overdueTasks.length} overdue task(s):\n${taskNames}`);
+//     }
+//   }
+// }, [initialized, tasks]);
+
 
   const handleCreateTask = (taskData) => {
     const newTask = Task.createNew(
@@ -116,7 +145,10 @@ const App = () => {
           + Create Task
         </button>
       </header>
-
+      <OverdueModal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <h2>📌 You have {overdueCount} overdue tasks:</h2>
+        <pre>{overdueTitles}</pre>
+      </OverdueModal>
       <div style={{ marginTop: '10px',marginBottom:'10px' }}>
             <label>Sort by: </label>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
