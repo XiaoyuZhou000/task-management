@@ -39,7 +39,7 @@ Start the development server:
 ``` bash
 npm run dev
 ```
-The application will open in your browser at http://localhost:5173
+The application will open in your browser at http://localhost:5173/task-management/
 
 ### Building for Production
 
@@ -103,7 +103,7 @@ Completed tasks appear in the "Completed Tasks" section at the bottom:
   /components
     TaskList.jsx            # Active task list
     CompletedTasks.jsx      # Completed tasks section
-    TaskForm.jsx       # Create/edit form page
+    TaskForm.jsx            # Create/edit form page
     TaskItem.jsx            # Single task component
     OverdueModal.jsx        # Overdue reminder module
   /models
