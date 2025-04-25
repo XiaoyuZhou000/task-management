@@ -1,8 +1,12 @@
 # Task Manager
 
-![Task Manager Screenshot]()
+![Task Manager Screenshot](src\assets\task_manager_screenshot.png)
 
 A React-based task management application with local storage persistence.
+
+## Deployed Github Page
+
+https://xiaoyuzhou000.github.io/task-management/
 
 ## Features
 
@@ -14,6 +18,7 @@ A React-based task management application with local storage persistence.
 - 💾 **Automatic saving** to browser's localStorage
 - 📱 **Responsive design** works on all devices
 - 📅 **Date picker** helps select valid deadlines
+- 📅 **Recursive Tasks** with recursive deadline help to automatically set periodic reminders
 
 ## Installation
 
@@ -67,7 +72,7 @@ npm run deploy
    - **Important** (required) - Toggle the checkbox to mark as high priority
 3. Click <kbd>Create Task</kbd> to save or <kbd>Cancel</kbd> to discard
 
-![Create Task]() <!-- Add screenshot if available -->
+![Create Task](src\assets\create_task.png)
 
 ### Managing Active Tasks
 Each task appears as a card with these interactive elements:
@@ -90,7 +95,7 @@ When you click a task:
    - <kbd>Delete Task</kbd> - Permanently removes the task
    - <kbd>Cancel</kbd> - Closes without saving
 
-![Edit Task]() <!-- Add screenshot if available -->
+![Edit Task](src\assets\edit_task.png)
 
 ### Viewing Completed Tasks
 Completed tasks appear in the "Completed Tasks" section at the bottom:
